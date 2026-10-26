@@ -1,8 +1,6 @@
 import 'hamburgers/dist/hamburgers.css';
 import '../../styles/app.css';
 
-import $ from 'jquery';
-
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ScrollSmoother } from 'gsap/ScrollSmoother';
@@ -14,13 +12,7 @@ import initInlineSvg from './modules/inline-svg.js';
 import initSmoothScroll from './modules/smooth-scroll.js';
 import initAnimations from './modules/animations.js';
 
-window.$ = $;
-window.jQuery = $;
-
-gsap.registerPlugin(
-	ScrollTrigger,
-	ScrollSmoother
-);
+gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
 window.gsap = gsap;
 window.ScrollTrigger = ScrollTrigger;

@@ -30,17 +30,5 @@ export default defineConfig({
 			fileName: () => 'script.js',
 			cssFileName: 'style',
 		},
-
-		rolldownOptions: {
-			external: [
-				'jquery',
-			],
-
-			output: {
-				globals: {
-					jquery: 'jQuery',
-				},
-			},
-		},
 	},
 });

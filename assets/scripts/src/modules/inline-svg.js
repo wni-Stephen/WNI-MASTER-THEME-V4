@@ -1,39 +1,42 @@
-import $ from 'jquery';
-
 export default function initInlineSvg() {
-	$('img.editsvg[src$=".svg"]').each(
-		function () {
-			const $img = $(this);
-			const imgID = $img.attr('id');
-			const imgClass = $img.attr('class');
-			const imgURL = $img.attr('src');
+	const images = document.querySelectorAll('img.editsvg[src$=".svg"]');
 
-			$.get(
-				imgURL,
-				function (data) {
-					const $svg = $(data)
-						.find('svg');
+	images.forEach(async (image) => {
+		const url = image.getAttribute('src');
 
-					if (imgID) {
-						$svg.attr(
-							'id',
-							imgID
-						);
-					}
-
-					if (imgClass) {
-						$svg.attr(
-							'class',
-							`${imgClass} replaced-svg`
-						);
-					}
-
-					$svg.removeAttr('xmlns:a');
-
-					$img.replaceWith($svg);
-				},
-				'xml'
-			);
+		if (!url) {
+			return;
 		}
-	);
+
+		try {
+			const response = await fetch(url);
+
+			if (!response.ok) {
+				return;
+			}
+			const svgText = await response.text();
+			const parser = new DOMParser();
+			const documentSvg = parser.parseFromString(svgText, 'image/svg+xml');
+			const svg = documentSvg.querySelector('svg');
+
+			if (!svg || documentSvg.querySelector('parsererror')) {
+				return;
+			}
+
+			if (image.id) {
+				svg.id = image.id;
+			}
+
+			if (image.className) {
+				svg.setAttribute(
+					'class',
+					`${image.className} replaced-svg`
+				);
+			}
+			svg.removeAttribute('xmlns:a');
+			image.replaceWith(svg);
+		} catch {
+			// Leave the original image in place.
+		}
+	});
 }

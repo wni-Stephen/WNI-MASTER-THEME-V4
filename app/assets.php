@@ -133,7 +133,7 @@ function websiteni_enqueue_assets() {
 	/**
 	 * Font CSS variables.
 	 *
-	 * Foundation and custom SCSS use these variables
+	 * Theme styles use these variables
 	 * rather than hardcoded font-family values.
 	 */
 	$font_css = sprintf(
@@ -152,15 +152,11 @@ function websiteni_enqueue_assets() {
 
 	/**
 	 * Main JavaScript.
-	 *
-	 * jQuery is provided by WordPress.
 	 */
 	wp_enqueue_script(
 		'wni-main',
 		$script_uri,
-		[
-			'jquery',
-		],
+		[],
 		$script_version,
 		true
 	);

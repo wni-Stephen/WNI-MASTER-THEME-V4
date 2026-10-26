@@ -1,68 +1,58 @@
-import $ from 'jquery';
-
 export default function initSearch() {
-	const $search = $('.search');
+	const search = document.querySelector('.search');
+	const openButtons = document.querySelectorAll('.search-open');
+	const closeButtons = document.querySelectorAll('.search-close');
+	const input = document.querySelector('.search-input');
 
-	if (!$search.length) {
+	if (!search) {
 		return;
 	}
 
 	let searchTrigger = null;
 
-	$('.search-open').on(
-		'click',
-		function (event) {
-			event.preventDefault();
+	function openSearch(trigger) {
+		searchTrigger = trigger;
+		search.setAttribute('aria-hidden', 'false');
 
-			searchTrigger = this;
+		document.body.classList.add('search-is-active');
 
-			$search.attr(
-				'aria-hidden',
-				'false'
-			);
-
-			$('body').addClass(
-				'search-is-active'
-			);
-
-			setTimeout(function () {
-				$('.search-input')
-					.first()
-					.trigger('focus');
-			}, 100);
-		}
-	);
-
-	function closeSearch() {
-		$search.attr(
-			'aria-hidden',
-			'true'
-		);
-
-		$('body').removeClass(
-			'search-is-active'
-		);
-
-		if (searchTrigger) {
-			$(searchTrigger).trigger(
-				'focus'
-			);
-		}
+		setTimeout(() => {
+			input?.focus();
+		}, 100);
 	}
 
-	$('.search-close').on(
-		'click',
-		closeSearch
-	);
+	function closeSearch() {
+		search.setAttribute('aria-hidden', 'true');
 
-	$(document).on('keydown', function (event) {
-		if (
-			event.key === 'Escape'
-			&& $('body').hasClass(
-				'search-is-active'
-			)
-		) {
-			closeSearch();
-		}
+		document.body.classList.remove('search-is-active');
+
+		searchTrigger?.focus();
+	}
+
+	openButtons.forEach((button) => {
+		button.addEventListener(
+			'click',
+			(event) => {
+				event.preventDefault();
+
+				openSearch(button);
+			}
+		);
 	});
+
+	closeButtons.forEach((button) => {
+		button.addEventListener('click', closeSearch);
+	});
+
+	document.addEventListener(
+		'keydown',
+		(event) => {
+			if (
+				event.key === 'Escape'
+				&& document.body.classList.contains('search-is-active')
+			) {
+				closeSearch();
+			}
+		}
+	);
 }

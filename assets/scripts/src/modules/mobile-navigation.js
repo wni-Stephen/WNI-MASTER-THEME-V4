@@ -1,163 +1,76 @@
-import $ from 'jquery';
-
 export default function initMobileNavigation() {
-	const $navigation = $('.navigation-overlay');
-	const $hamburger = $('.hamburger');
+	const navigation = document.querySelector('.navigation-overlay');
+	const hamburger = document.querySelector('.hamburger');
+	if (!navigation || !hamburger) return;
 
-	if (!$navigation.length || !$hamburger.length) {
-		return;
-	}
-
+	const closeButton = navigation.querySelector('.close');
+	const wrapper = document.querySelector('.wrapper');
 	function closeNavigation() {
-		$navigation
-			.removeClass('is-active')
-			.attr('aria-hidden', 'true');
-
-		$hamburger
-			.removeClass('is-active')
-			.attr({
-				'aria-expanded': 'false',
-				'aria-label': 'Open menu',
-			});
-
-		$('.wrapper').removeClass(
-			'hamburger-is-active'
-		);
-
-		$('body').removeClass(
-			'mobile-nav-is-active'
-		);
-
-		$('.submenu-toggle').attr(
-			'aria-expanded',
-			'false'
-		);
-
-		$navigation
-			.find('.sub-menu')
-			.removeClass('sub-menu-is-active')
-			.attr('aria-hidden', 'true');
-
-		$hamburger.first().trigger('focus');
+		navigation.classList.remove('is-active');
+		navigation.setAttribute('aria-hidden', 'true');
+		hamburger.classList.remove('is-active');
+		hamburger.setAttribute('aria-expanded', 'false');
+		hamburger.setAttribute('aria-label', 'Open menu');
+		document.body.classList.remove('mobile-nav-is-active');
+		wrapper?.classList.remove('hamburger-is-active');
+		navigation.querySelectorAll('.submenu-toggle').forEach((button) => {
+			button.setAttribute('aria-expanded', 'false');
+		});
+		navigation.querySelectorAll('.sub-menu').forEach((submenu) => {
+			submenu.classList.remove('sub-menu-is-active');
+			submenu.setAttribute('aria-hidden', 'true');
+		});
+		hamburger.focus();
 	}
 
-	$hamburger.on('click', function () {
-		const $button = $(this);
-
-		const isOpen = !$button.hasClass(
-			'is-active'
-		);
-
-		$button
-			.toggleClass('is-active', isOpen)
-			.attr({
-				'aria-expanded': isOpen
-					? 'true'
-					: 'false',
-				'aria-label': isOpen
-					? 'Close menu'
-					: 'Open menu',
-			});
-
-		$navigation
-			.toggleClass('is-active', isOpen)
-			.attr(
-				'aria-hidden',
-				isOpen ? 'false' : 'true'
-			);
-
-		$('.wrapper').toggleClass(
-			'hamburger-is-active',
-			isOpen
-		);
-
-		$('body').toggleClass(
-			'mobile-nav-is-active',
-			isOpen
-		);
-
-		if (isOpen) {
-			$navigation
-				.find('.close')
-				.first()
-				.trigger('focus');
-		}
+	hamburger.addEventListener('click', () => {
+		const isOpen = !hamburger.classList.contains('is-active');
+		hamburger.classList.toggle('is-active', isOpen);
+		hamburger.setAttribute('aria-expanded', String(isOpen));
+		hamburger.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+		navigation.classList.toggle('is-active', isOpen);
+		navigation.setAttribute('aria-hidden', String(!isOpen));
+		document.body.classList.toggle('mobile-nav-is-active', isOpen);
+		wrapper?.classList.toggle('hamburger-is-active', isOpen);
+		if (isOpen) closeButton?.focus();
 	});
-
-	$navigation
-		.find('.close')
-		.on('click', function (event) {
+	navigation.querySelectorAll('.close').forEach((button) => {
+		button.addEventListener('click', (event) => {
 			event.preventDefault();
 			closeNavigation();
 		});
+	});
 
-	$navigation
-		.find('li.menu-item-has-children')
-		.each(function (index) {
-			const $item = $(this);
-			const $link = $item.children('a').first();
-			const $submenu = $item
-				.children('.sub-menu')
-				.first();
+	navigation.querySelectorAll('li.menu-item-has-children').forEach((item, index) => {
+		const link = item.querySelector(':scope > a');
+		const submenu = item.querySelector(':scope > .sub-menu');
+		if (!link || !submenu) return;
 
-			if (!$submenu.length) {
-				return;
-			}
+		const submenuId = `mobile-submenu-${index}`;
+		submenu.id = submenuId;
+		submenu.setAttribute('aria-hidden', 'true');
+		const toggle = document.createElement('button');
+		toggle.type = 'button';
+		toggle.className = 'submenu-toggle';
+		toggle.setAttribute('aria-expanded', 'false');
+		toggle.setAttribute('aria-controls', submenuId);
+		toggle.setAttribute('aria-label', `Toggle submenu for ${link.textContent.trim()}`);
+		link.insertAdjacentElement('afterend', toggle);
+	});
+	navigation.addEventListener('click', (event) => {
+		const toggle = event.target.closest('.submenu-toggle');
+		if (!toggle || !navigation.contains(toggle)) return;
 
-			const submenuId = `mobile-submenu-${index}`;
+		const submenu = toggle.parentElement.querySelector(':scope > .sub-menu');
+		if (!submenu) return;
+		const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+		toggle.setAttribute('aria-expanded', String(!isOpen));
+		submenu.classList.toggle('sub-menu-is-active', !isOpen);
+		submenu.setAttribute('aria-hidden', String(isOpen));
+	});
 
-			$submenu
-				.attr('id', submenuId)
-				.attr('aria-hidden', 'true');
-
-			const $toggle = $('<button>', {
-				type: 'button',
-				class: 'submenu-toggle',
-				'aria-expanded': 'false',
-				'aria-controls': submenuId,
-				'aria-label':
-					`Toggle submenu for ${$.trim($link.text())}`,
-			});
-
-			$link.after($toggle);
-		});
-
-	$navigation.on(
-		'click',
-		'.submenu-toggle',
-		function () {
-			const $button = $(this);
-			const $submenu = $button
-				.siblings('.sub-menu')
-				.first();
-
-			const isOpen = (
-				$button.attr('aria-expanded')
-				=== 'true'
-			);
-
-			$button.attr(
-				'aria-expanded',
-				isOpen ? 'false' : 'true'
-			);
-
-			$submenu
-				.toggleClass(
-					'sub-menu-is-active',
-					!isOpen
-				)
-				.attr(
-					'aria-hidden',
-					isOpen ? 'true' : 'false'
-				);
-		}
-	);
-
-	$(document).on('keydown', function (event) {
-		if (
-			event.key === 'Escape'
-			&& $navigation.hasClass('is-active')
-		) {
+	document.addEventListener('keydown', (event) => {
+		if (event.key === 'Escape' && navigation.classList.contains('is-active')) {
 			closeNavigation();
 		}
 	});
