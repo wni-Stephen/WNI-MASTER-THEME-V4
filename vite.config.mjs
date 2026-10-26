@@ -1,14 +1,13 @@
 import { defineConfig } from 'vite';
+import tailwindcss from '@tailwindcss/vite';
 import { resolve } from 'node:path';
 
 export default defineConfig({
 	base: './',
 
-	css: {
-		lightningcss: {
-			errorRecovery: true,
-		},
-	},
+	plugins: [
+		tailwindcss(),
+	],
 
 	build: {
 		outDir: resolve(
@@ -33,10 +32,6 @@ export default defineConfig({
 			cssFileName: 'style',
 		},
 
-		/**
-		 * Use WordPress's jQuery rather than
-		 * bundling another copy.
-		 */
 		rolldownOptions: {
 			external: [
 				'jquery',

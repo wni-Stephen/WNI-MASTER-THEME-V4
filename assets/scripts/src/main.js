@@ -1,9 +1,7 @@
 import 'hamburgers/dist/hamburgers.css';
-import '../../styles/scss/style.scss';
+import '../../styles/app.css';
 
 import $ from 'jquery';
-import 'what-input';
-import 'foundation-sites';
 
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -22,5 +20,3 @@ window.ScrollTrigger = ScrollTrigger;
 window.ScrollSmoother = ScrollSmoother;
 
 import '../functions.js';
-
-$(document).foundation();
