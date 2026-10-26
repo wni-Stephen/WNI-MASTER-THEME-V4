@@ -12,7 +12,7 @@ defined('ABSPATH') || exit;
  *
  * Existing front-page settings are left untouched.
  */
-function websiteni_joints_theme_activation_setup() {
+function websiteni_theme_activation_setup() {
 
 	/**
 	 * Do not overwrite an existing static front page.
@@ -100,7 +100,7 @@ function websiteni_starter_setup_page() {
 add_action('admin_post_wni_starter_setup', function () {
 	if (!current_user_can('manage_options')) wp_die(esc_html__('You do not have permission to run setup.', 'websiteni'));
 	check_admin_referer('wni_starter_setup');
-	websiteni_joints_theme_activation_setup();
+	websiteni_theme_activation_setup();
 	wp_safe_redirect(admin_url('options-reading.php'));
 	exit;
 });

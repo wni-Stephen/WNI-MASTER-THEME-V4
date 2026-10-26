@@ -9,7 +9,7 @@ defined('ABSPATH') || exit;
 /**
  * Register ACF Options pages.
  */
-function websiteni_joints_register_acf_options_pages() {
+function websiteni_register_acf_options_pages() {
 
 	if (!function_exists('acf_add_options_page')) {
 		return;
@@ -57,7 +57,7 @@ function websiteni_joints_register_acf_options_pages() {
 
 add_action(
 	'acf/init',
-	'websiteni_joints_register_acf_options_pages'
+	'websiteni_register_acf_options_pages'
 );
 
 
@@ -69,7 +69,7 @@ add_action(
  *
  * @return string
  */
-function websiteni_joints_acf_json_save_point(
+function websiteni_acf_json_save_point(
 	$path
 ) {
 
@@ -79,7 +79,7 @@ function websiteni_joints_acf_json_save_point(
 
 add_filter(
 	'acf/settings/save_json',
-	'websiteni_joints_acf_json_save_point'
+	'websiteni_acf_json_save_point'
 );
 
 
@@ -91,7 +91,7 @@ add_filter(
  *
  * @return array
  */
-function websiteni_joints_acf_json_load_point(
+function websiteni_acf_json_load_point(
 	$paths
 ) {
 
@@ -111,5 +111,5 @@ function websiteni_joints_acf_json_load_point(
 
 add_filter(
 	'acf/settings/load_json',
-	'websiteni_joints_acf_json_load_point'
+	'websiteni_acf_json_load_point'
 );

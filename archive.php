@@ -29,7 +29,7 @@ get_header();
 										<div class="post-card-content">
 											<h2 class="post-card-title"><?php the_title(); ?></h2>
 											<p class="post-card-date"><?php echo esc_html(get_the_date()); ?></p>
-											<div class="post-card-excerpt"><p><?php echo esc_html(websiteni_joints_excerpt(25)); ?></p></div>
+											<div class="post-card-excerpt"><p><?php echo esc_html(websiteni_excerpt(25)); ?></p></div>
 											<span class="post-card-read-more"><?php esc_html_e('Read more', 'websiteni'); ?></span>
 										</div>
 									</a>

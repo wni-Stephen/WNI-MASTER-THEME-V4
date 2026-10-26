@@ -11,7 +11,7 @@ defined('ABSPATH') || exit;
 /**
  * Configure theme features.
  */
-function websiteni_joints_theme_setup() {
+function websiteni_theme_setup() {
 
 	/**
 	 * Load theme translations.
@@ -107,5 +107,5 @@ function websiteni_joints_theme_setup() {
 
 add_action(
 	'after_setup_theme',
-	'websiteni_joints_theme_setup'
+	'websiteni_theme_setup'
 );

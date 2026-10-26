@@ -24,6 +24,7 @@ document.addEventListener(
 		initResponsiveEmbeds();
 		initMobileNavigation();
 		initSearch();
+		document.documentElement.classList.replace('no-js', 'js');
 		initInlineSvg();
 		initSmoothScroll();
 		initAnimations();

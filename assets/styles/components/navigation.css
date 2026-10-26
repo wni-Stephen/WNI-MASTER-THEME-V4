@@ -39,14 +39,7 @@
 	}
 
 	.navigation-overlay {
-		position: fixed;
-		inset: 0;
-		z-index: 100;
-
-		display: flex;
 		visibility: hidden;
-
-		padding: 5rem 20px 2rem;
 
 		background-color: var(--color-secondary);
 		color: var(--color-white);
@@ -57,12 +50,22 @@
 		transition:
 			opacity 0.3s var(--ease-wni),
 			visibility 0.3s var(--ease-wni);
+
+		position: fixed;
+		inset: 0;
+		z-index: 100;
+		display: none;
+		padding: 5rem 24px 24px;
+		overflow-y: auto;
+		overscroll-behavior: contain;
 	}
 
 	.navigation-overlay.is-active {
 		visibility: visible;
 		opacity: 1;
 		pointer-events: auto;
+
+		display: block;
 	}
 
 	.navigation-overlay nav {
@@ -93,11 +96,36 @@
 	}
 
 	.submenu-toggle {
+		display: grid;
+		place-items: center;
+		color: inherit;
+		background: transparent;
+		border: 0;
+		cursor: pointer;
+		top: 0.5rem;
 		position: absolute;
 		right: 0;
 
 		width: 3rem;
 		height: 3rem;
+	}
+
+	.submenu-toggle::before {
+		content: "";
+		width: 0.6rem;
+		height: 0.6rem;
+		border-right: 2px solid currentColor;
+		border-bottom: 2px solid currentColor;
+		transform: rotate(45deg);
+	}
+	.submenu-toggle[aria-expanded="true"]::before {
+		transform: rotate(225deg);
+	}
+	.navigation-overlay .menu-item-has-children > a {
+		padding-right: 3.5rem;
+	}
+	.navigation-overlay .close img {
+		filter: brightness(0) invert(1);
 	}
 
 	.navigation-overlay .menu-item-has-children {
@@ -126,18 +154,7 @@
 	}
 
 	.search {
-		position: fixed;
-		inset: 0;
-		z-index: 200;
-
 		visibility: hidden;
-
-		background-color:
-			color-mix(
-				in srgb,
-				var(--color-secondary) 96%,
-				transparent
-			);
 
 		opacity: 0;
 		pointer-events: none;
@@ -145,6 +162,14 @@
 		transition:
 			opacity 0.3s var(--ease-wni),
 			visibility 0.3s var(--ease-wni);
+
+		position: fixed;
+		inset: 0;
+		z-index: 110;
+		display: none;
+		background: rgb(0 0 0 / 80%);
+		overflow-y: auto;
+		overscroll-behavior: contain;
 	}
 
 	body.search-is-active .search {
@@ -159,17 +184,24 @@
 		align-items: center;
 		justify-content: center;
 		padding: 20px;
+
+		width: min(900px, calc(100% - 40px));
 	}
 
 	.search-container {
-		position: relative;
 		width: min(100%, 60rem);
+
+		position: relative;
+		background: var(--color-white);
+		padding: 24px;
 	}
 
 	.search-input {
-		width: 100%;
-		padding: 1rem 4rem 1rem 1rem;
 		font-size: clamp(1.5rem, 3vw, 2.5rem);
+
+		width: 100%;
+		border: 1px solid rgb(0 0 0 / 20%);
+		padding: 14px 16px;
 	}
 
 	.search-close {
@@ -182,5 +214,33 @@
 	body.mobile-nav-is-active,
 	body.search-is-active {
 		overflow: hidden;
+	}
+
+	.search[aria-hidden="false"] {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+}
+
+@layer components {
+	.js .navigation-fallback,
+	.no-js .hamburger,
+	.no-js .search-open {
+		display: none;
+	}
+	.navigation-fallback {
+		padding-block: 1rem;
+	}
+	.navigation-fallback summary {
+		cursor: pointer;
+		font-weight: 700;
+	}
+	.navigation-fallback nav a {
+		display: inline-block;
+		padding-block: 0.5rem;
+	}
+	.navigation-fallback ul ul {
+		padding-left: 1.5rem;
 	}
 }

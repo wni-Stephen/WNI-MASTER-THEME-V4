@@ -21,6 +21,7 @@ $custom_logo_id = get_theme_mod('custom_logo');
 </head>
 <body <?php body_class(apply_filters('websiteni_smooth_scroll_enabled', false) ? 'smooth-scroll' : ''); ?>>
 	<?php wp_body_open(); ?>
+	<?php get_template_part('components/navigation-fallback'); ?>
 
 	<div id="skip-navigation-link">
 		<a href="#content">Skip to Main Content</a>

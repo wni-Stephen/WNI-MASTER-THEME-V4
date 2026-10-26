@@ -12,7 +12,7 @@ defined('ABSPATH') || exit;
  *
  * @return string
  */
-function websiteni_joints_excerpt($limit = 20) {
+function websiteni_excerpt($limit = 20) {
 	$limit = absint($limit);
 
 	if (!$limit) {
@@ -33,7 +33,7 @@ function websiteni_joints_excerpt($limit = 20) {
  *
  * @return array
  */
-function websiteni_joints_comment_form_comment_field_to_bottom($fields) {
+function websiteni_comment_form_comment_field_to_bottom($fields) {
 	if (empty($fields['comment'])) {
 		return $fields;
 	}
@@ -47,49 +47,18 @@ function websiteni_joints_comment_form_comment_field_to_bottom($fields) {
 
 add_filter(
 	'comment_form_fields',
-	'websiteni_joints_comment_form_comment_field_to_bottom'
+	'websiteni_comment_form_comment_field_to_bottom'
 );
 
 /**
- * Get layout settings for the current Flexible Content row.
- *
- * Supports:
- * 1. ACF Extended Flexible Content Settings Modal.
- * 2. A manual ACF Clone field named "layout_options".
- * 3. No layout settings at all.
+ * Get the standard ACF Pro layout_options Clone field for the current row.
  *
  * @return array
  */
-function websiteni_joints_get_layout_settings() {
-	if (
-		function_exists('have_settings')
-		&& have_settings()
-	) {
-		$options = array();
-
-		while (have_settings()) {
-			the_setting();
-
-			$options = array(
-				'section_id'     => get_sub_field('section_id'),
-				'background'     => get_sub_field('background'),
-				'padding_top'    => get_sub_field('padding_top'),
-				'padding_bottom' => get_sub_field('padding_bottom'),
-			);
-		}
-
-		return $options;
-	}
-
-	if (function_exists('get_sub_field')) {
-		$options = get_sub_field('layout_options');
-
-		if (is_array($options)) {
-			return $options;
-		}
-	}
-
-	return array();
+function websiteni_get_layout_settings() {
+	if (!function_exists('get_sub_field')) return array();
+	$options = get_sub_field('layout_options');
+	return is_array($options) ? $options : array();
 }
 
 /**
@@ -102,7 +71,7 @@ function websiteni_joints_get_layout_settings() {
  *
  * @return array
  */
-function websiteni_joints_get_layout_options($options = array()) {
+function websiteni_get_layout_options($options = array()) {
 	if (!is_array($options)) {
 		$options = array();
 	}

@@ -15,7 +15,7 @@ defined('ABSPATH') || exit;
  * Uses the WordPress custom logo when available,
  * falling back to the starter theme logo.
  */
-function websiteni_joints_get_login_logo() {
+function websiteni_get_login_logo() {
 
 	$custom_logo_id = get_theme_mod(
 		'custom_logo'
@@ -41,9 +41,9 @@ function websiteni_joints_get_login_logo() {
 /**
  * Custom WordPress login styling.
  */
-function websiteni_joints_login_styles() {
+function websiteni_login_styles() {
 
-	$logo_url = websiteni_joints_get_login_logo();
+	$logo_url = websiteni_get_login_logo();
 	?>
 
 	<style>
@@ -79,28 +79,28 @@ function websiteni_joints_login_styles() {
 
 add_action(
 	'login_enqueue_scripts',
-	'websiteni_joints_login_styles'
+	'websiteni_login_styles'
 );
 
 
 /**
  * Make the login logo link back to the website.
  */
-function websiteni_joints_login_logo_url() {
+function websiteni_login_logo_url() {
 
 	return home_url('/');
 }
 
 add_filter(
 	'login_headerurl',
-	'websiteni_joints_login_logo_url'
+	'websiteni_login_logo_url'
 );
 
 
 /**
  * Login logo accessible text.
  */
-function websiteni_joints_login_logo_text() {
+function websiteni_login_logo_text() {
 
 	return get_bloginfo(
 		'name',
@@ -110,7 +110,7 @@ function websiteni_joints_login_logo_text() {
 
 add_filter(
 	'login_headertext',
-	'websiteni_joints_login_logo_text'
+	'websiteni_login_logo_text'
 );
 
 
@@ -143,7 +143,7 @@ remove_action(
 /**
  * Remove unnecessary default dashboard widgets.
  */
-function websiteni_joints_remove_dashboard_widgets() {
+function websiteni_remove_dashboard_widgets() {
 
 	remove_meta_box(
 		'dashboard_right_now',
@@ -172,32 +172,32 @@ function websiteni_joints_remove_dashboard_widgets() {
 
 add_action(
 	'wp_dashboard_setup',
-	'websiteni_joints_remove_dashboard_widgets'
+	'websiteni_remove_dashboard_widgets'
 );
 
 
 /**
  * Add WebsiteNI support dashboard widget.
  */
-function websiteni_joints_custom_dashboard_widgets() {
+function websiteni_custom_dashboard_widgets() {
 
 	wp_add_dashboard_widget(
-		'websiteni_joints_widget',
+		'websiteni_widget',
 		'WebsiteNI - Do you need help?',
-		'websiteni_joints_widget_dashboard'
+		'websiteni_widget_dashboard'
 	);
 }
 
 add_action(
 	'wp_dashboard_setup',
-	'websiteni_joints_custom_dashboard_widgets'
+	'websiteni_custom_dashboard_widgets'
 );
 
 
 /**
  * WebsiteNI dashboard widget content.
  */
-function websiteni_joints_widget_dashboard() {
+function websiteni_widget_dashboard() {
 	?>
 
 	<p>
@@ -216,7 +216,7 @@ function websiteni_joints_widget_dashboard() {
 /**
  * Custom WordPress admin footer.
  */
-function websiteni_joints_custom_dashboard_footer() {
+function websiteni_custom_dashboard_footer() {
 
 	echo wp_kses_post(
 		'Created by <a href="https://websiteni.com" target="_blank" rel="noopener noreferrer">WebsiteNI</a>'
@@ -225,5 +225,5 @@ function websiteni_joints_custom_dashboard_footer() {
 
 add_filter(
 	'admin_footer_text',
-	'websiteni_joints_custom_dashboard_footer'
+	'websiteni_custom_dashboard_footer'
 );

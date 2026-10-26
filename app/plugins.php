@@ -18,7 +18,7 @@ require_once get_template_directory()
 /**
  * Register recommended WebsiteNI plugins.
  */
-function websiteni_joints_register_plugins() {
+function websiteni_register_plugins() {
 
 	$plugins = array(
 
@@ -90,5 +90,5 @@ function websiteni_joints_register_plugins() {
 
 add_action(
 	'tgmpa_register',
-	'websiteni_joints_register_plugins'
+	'websiteni_register_plugins'
 );

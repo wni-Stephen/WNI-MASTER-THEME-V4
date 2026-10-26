@@ -1,7 +1,10 @@
-@theme {
-	--font-body: Arial, Helvetica, sans-serif;
-	--font-heading: Arial, Helvetica, sans-serif;
+/* Font stacks are supplied by websiteni_get_font_config() in app/assets.php. */
+@theme inline {
+	--font-body: var(--wni-font-body);
+	--font-heading: var(--wni-font-heading);
+}
 
+@theme {
 	--color-primary: #0060dd;
 	--color-primary-dark: #001777;
 	--color-secondary: #0d1032;
@@ -15,8 +18,9 @@
 	--color-alert: #dc2626;
 	--color-info: #0284c7;
 
-	--color-black: #0a0a0a;
+	--color-black: #000000;
 	--color-white: #ffffff;
+	--color-light: #f8fafc;
 	--color-grey-light: #f5f5f5;
 	--color-grey: #cccccc;
 	--color-grey-dark: #666666;

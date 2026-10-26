@@ -1,32 +1,24 @@
 @layer components {
 	.button {
 		display: inline-flex;
-		min-height: 3.25rem;
 		align-items: center;
 		justify-content: center;
+		min-height: 48px;
+		padding: 0.75rem 1.25rem;
+		background: var(--color-primary);
+		color: var(--color-white);
+		font-weight: 700;
 		gap: 0.625rem;
-		padding: 0.875rem 1.5rem;
-
 		border: 2px solid transparent;
 		border-radius: 0;
-
-		background-color: var(--color-primary);
-		color: var(--color-white);
-
-		font-weight: 700;
 		line-height: 1.2;
 		text-decoration: none;
-
 		cursor: pointer;
-
-		transition:
-			background-color 0.3s var(--ease-wni),
-			border-color 0.3s var(--ease-wni),
-			color 0.3s var(--ease-wni),
-			transform 0.3s var(--ease-wni);
+		transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease, transform 180ms ease;
 	}
 
-	.button:hover {
+	.button:hover,
+	.button:focus-visible {
 		background-color: var(--color-primary-dark);
 		color: var(--color-white);
 	}
@@ -39,7 +31,8 @@
 		background-color: var(--color-secondary);
 	}
 
-	.button-secondary:hover {
+	.button-secondary:hover,
+	.button-secondary:focus-visible {
 		background-color: var(--color-black);
 	}
 
@@ -49,7 +42,8 @@
 		color: var(--color-primary);
 	}
 
-	.button-outline:hover {
+	.button-outline:hover,
+	.button-outline:focus-visible {
 		border-color: var(--color-primary);
 		background-color: var(--color-primary);
 		color: var(--color-white);
@@ -60,8 +54,10 @@
 		color: var(--color-black);
 	}
 
-	.button-white:hover {
+	.button-white:hover,
+	.button-white:focus-visible {
 		background-color: var(--color-grey-light);
 		color: var(--color-black);
 	}
+
 }

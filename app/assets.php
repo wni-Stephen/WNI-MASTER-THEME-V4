@@ -9,8 +9,8 @@ defined('ABSPATH') || exit;
 /**
  * Website font configuration.
  *
- * This should be the main place fonts are changed
- * when starting a new WebsiteNI project.
+ * Single source of truth for font loading and body/heading stacks.
+ * CSS consumes these values; change project fonts only here.
  *
  * To use different body and heading fonts:
  *
@@ -32,13 +32,9 @@ function websiteni_get_font_config() {
 			. '&display=swap'
 		),
 
-		'body_stack' => (
-			'"Open Sans", Arial, sans-serif'
-		),
+		'body_stack' => '"Open Sans", Arial, sans-serif',
 
-		'heading_stack' => (
-			'"Open Sans", Arial, sans-serif'
-		),
+		'heading_stack' => '"Open Sans", Arial, sans-serif',
 	];
 }
 
@@ -130,8 +126,8 @@ function websiteni_enqueue_assets() {
 	 */
 	$font_css = sprintf(
 		':root {
-			--font-body: %s;
-			--font-heading: %s;
+			--wni-font-body: %s;
+			--wni-font-heading: %s;
 		}',
 		$font_config['body_stack'],
 		$font_config['heading_stack']
@@ -176,13 +172,7 @@ function websiteni_font_resource_hints(
 
 	$font_config = websiteni_get_font_config();
 
-	if (
-		empty(
-			$font_config[
-				'google_fonts_enabled'
-			]
-		)
-	) {
+	if (empty($font_config['google_fonts_enabled']) || empty($font_config['google_fonts_url'])) {
 		return $urls;
 	}
 

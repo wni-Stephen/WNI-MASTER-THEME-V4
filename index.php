@@ -26,7 +26,7 @@ $page_title = $posts_page_id ? get_the_title($posts_page_id) : __('News', 'websi
 										<div class="post-card-content">
 											<h2 class="post-card-title"><?php the_title(); ?></h2>
 											<p class="post-card-date"><?php echo esc_html(get_the_date()); ?></p>
-											<div class="post-card-excerpt"><p><?php echo esc_html(websiteni_joints_excerpt(25)); ?></p></div>
+											<div class="post-card-excerpt"><p><?php echo esc_html(websiteni_excerpt(25)); ?></p></div>
 											<span class="post-card-read-more">Read more</span>
 										</div>
 									</a>

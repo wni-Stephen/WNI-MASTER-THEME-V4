@@ -304,16 +304,9 @@ function websiteni_get_launch_checks() {
 	/**
 	 * Plugin checks.
 	 */
-	$acf_active = websiteni_launch_plugin_active(
-		[
-			'advanced-custom-fields-pro/acf.php',
-			'advanced-custom-fields/acf.php',
-		]
-	);
-
-	$acfe_active = websiteni_launch_plugin_active(
-		'acf-extended/acf-extended.php'
-	);
+	$acf_active = function_exists('acf_get_field_type')
+		&& acf_get_field_type('flexible_content')
+		&& acf_get_field_type('clone');
 
 	$yoast_active = websiteni_launch_plugin_active(
 		'wordpress-seo/wp-seo.php'
@@ -642,10 +635,10 @@ function websiteni_get_launch_checks() {
 		 * Required plugins.
 		 */
 		websiteni_launch_check_item(
-			'Advanced Custom Fields',
+			'ACF Pro',
 			$acf_active,
-			'Advanced Custom Fields is active.',
-			'Advanced Custom Fields is not active.',
+			'ACF Pro Flexible Content and Clone fields are available.',
+			'ACF Pro is required for Flexible Content and Clone fields.',
 			'required_plugins',
 			true,
 			admin_url(
@@ -657,19 +650,6 @@ function websiteni_get_launch_checks() {
 		/**
 		 * Recommended plugins.
 		 */
-		websiteni_launch_check_item(
-			'ACF Extended',
-			$acfe_active,
-			'ACF Extended is active.',
-			'ACF Extended is not active.',
-			'recommended_plugins',
-			false,
-			admin_url(
-				'plugins.php'
-			),
-			'Open Plugins'
-		),
-
 		websiteni_launch_check_item(
 			'Yoast SEO',
 			$yoast_active,

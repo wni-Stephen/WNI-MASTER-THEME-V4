@@ -1,13 +1,19 @@
 @layer base {
+	*,
+	*::before,
+	*::after {
+		box-sizing: border-box;
+	}
+
 	html {
 		scroll-behavior: smooth;
 	}
 
 	body {
 		margin: 0;
-		background-color: var(--color-white);
+		background: var(--color-white);
 		color: var(--color-black);
-		font-family: var(--font-body);
+		font-family: var(--wni-font-body);
 		font-size: 1rem;
 		line-height: 1.6;
 		-webkit-font-smoothing: antialiased;
@@ -19,7 +25,7 @@
 	h4,
 	h5,
 	h6 {
-		font-family: var(--font-heading);
+		font-family: var(--wni-font-heading);
 		font-weight: 700;
 		text-wrap: balance;
 	}
@@ -77,5 +83,19 @@
 	:focus-visible {
 		outline: 3px solid var(--color-primary);
 		outline-offset: 3px;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	html {
+		scroll-behavior: auto !important;
+	}
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+		scroll-behavior: auto !important;
 	}
 }

@@ -10,7 +10,6 @@ export default function initMobileNavigation() {
 	const overlay = createOverlay(navigation, closeNavigation);
 	function closeNavigation() {
 		navigation.classList.remove('is-active');
-		navigation.setAttribute('aria-hidden', 'true');
 		hamburger.classList.remove('is-active');
 		hamburger.setAttribute('aria-expanded', 'false');
 		hamburger.setAttribute('aria-label', 'Open menu');

@@ -148,4 +148,44 @@
 		white-space: nowrap;
 		border: 0;
 	}
+
+	.posts-list,
+	.search-results-grid {
+		display: grid;
+		gap: 30px;
+	}
+
+	.post-card,
+	.search-result-card {
+		height: 100%;
+	}
+
+	.post-card-link,
+	.search-result-link {
+		display: block;
+		height: 100%;
+	}
+
+	.pagination .nav-links,
+	.search-pagination .nav-links,
+	.archive-pagination .nav-links {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem;
+	}
+
+	.pagination a,
+	.pagination span,
+	.search-pagination a,
+	.search-pagination span,
+	.archive-pagination a,
+	.archive-pagination span {
+		display: inline-flex;
+		min-width: 40px;
+		min-height: 40px;
+		align-items: center;
+		justify-content: center;
+		padding: 0.5rem;
+		border: 1px solid rgb(0 0 0 / 15%);
+	}
 }

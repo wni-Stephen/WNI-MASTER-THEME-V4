@@ -26,17 +26,10 @@ while (have_rows('page_content')) {
 		continue;
 	}
 
-	/**
-	 * Get shared layout settings.
-	 *
-	 * Supports:
-	 * - ACF Extended Settings Modal
-	 * - Standard layout_options Clone field
-	 * - No settings at all
-	 */
-	$layout_options = websiteni_joints_get_layout_settings();
+	// Read the shared ACF Pro Clone field for this row.
+	$layout_options = websiteni_get_layout_settings();
 
-	$layout = websiteni_joints_get_layout_options(
+	$layout = websiteni_get_layout_options(
 		$layout_options
 	);
 

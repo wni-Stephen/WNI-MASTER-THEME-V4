@@ -21,14 +21,14 @@ add_filter(
 /**
  * Hide the WordPress version generator.
  */
-function websiteni_joints_hide_wordpress_version() {
+function websiteni_hide_wordpress_version() {
 
 	return '';
 }
 
 add_filter(
 	'the_generator',
-	'websiteni_joints_hide_wordpress_version'
+	'websiteni_hide_wordpress_version'
 );
 
 
@@ -37,14 +37,14 @@ add_filter(
  *
  * Avoid revealing whether a username or email address exists.
  */
-function websiteni_joints_obscure_login_errors() {
+function websiteni_obscure_login_errors() {
 
 	return 'Something wasn\'t quite right there, please try again.';
 }
 
 add_filter(
 	'login_errors',
-	'websiteni_joints_obscure_login_errors'
+	'websiteni_obscure_login_errors'
 );
 
 
@@ -54,7 +54,7 @@ add_filter(
  * Modern browsers support emoji natively, so the additional
  * WordPress emoji scripts and styles are unnecessary.
  */
-function websiteni_joints_disable_emoji_assets() {
+function websiteni_disable_emoji_assets() {
 
 	remove_action(
 		'wp_head',
@@ -100,5 +100,5 @@ function websiteni_joints_disable_emoji_assets() {
 
 add_action(
 	'init',
-	'websiteni_joints_disable_emoji_assets'
+	'websiteni_disable_emoji_assets'
 );

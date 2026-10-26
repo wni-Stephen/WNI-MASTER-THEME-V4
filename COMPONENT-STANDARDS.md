@@ -7,7 +7,7 @@ This document defines the standard approach for building components and Flexible
 V4 uses:
 
 - WordPress
-- ACF Pro / ACF Extended
+- ACF Pro
 - Tailwind CSS v4
 - Vite
 - PHP template components
