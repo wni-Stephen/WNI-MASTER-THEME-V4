@@ -19,14 +19,14 @@ $custom_logo_id = get_theme_mod('custom_logo');
 	<meta name="author" content="WebsiteNI">
 	<?php wp_head(); ?>
 </head>
-<body <?php body_class('smooth-scroll'); ?>>
+<body <?php body_class(apply_filters('websiteni_smooth_scroll_enabled', false) ? 'smooth-scroll' : ''); ?>>
 	<?php wp_body_open(); ?>
 
 	<div id="skip-navigation-link">
 		<a href="#content">Skip to Main Content</a>
 	</div>
 
-	<div id="mobile-navigation" class="navigation-overlay" aria-hidden="true">
+	<div id="mobile-navigation" class="navigation-overlay" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Site navigation" tabindex="-1">
 		<nav aria-label="Primary navigation">
 			<button class="close" type="button" aria-label="Close menu">
 				<img src="<?php echo esc_url($theme_uri . '/assets/images/header/close.svg'); ?>" alt="">

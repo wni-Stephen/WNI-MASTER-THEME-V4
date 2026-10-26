@@ -34,6 +34,20 @@ export default function initInlineSvg() {
 				);
 			}
 			svg.removeAttribute('xmlns:a');
+			svg.setAttribute('focusable', 'false');
+			for (const attribute of image.attributes) {
+				if (attribute.name.startsWith('aria-') || attribute.name === 'role') {
+					svg.setAttribute(attribute.name, attribute.value);
+				}
+			}
+			const alt = image.getAttribute('alt');
+			const hasName = image.hasAttribute('aria-label') || image.hasAttribute('aria-labelledby');
+			if (alt === '' && !hasName) {
+				svg.setAttribute('aria-hidden', 'true');
+			} else if (alt || hasName) {
+				if (!image.hasAttribute('role')) svg.setAttribute('role', 'img');
+				if (!hasName) svg.setAttribute('aria-label', alt);
+			}
 			image.replaceWith(svg);
 		} catch {
 			// Leave the original image in place.

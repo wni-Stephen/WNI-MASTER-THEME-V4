@@ -1,3 +1,5 @@
+import createOverlay from './overlay.js';
+
 export default function initMobileNavigation() {
 	const navigation = document.querySelector('.navigation-overlay');
 	const hamburger = document.querySelector('.hamburger');
@@ -5,6 +7,7 @@ export default function initMobileNavigation() {
 
 	const closeButton = navigation.querySelector('.close');
 	const wrapper = document.querySelector('.wrapper');
+	const overlay = createOverlay(navigation, closeNavigation);
 	function closeNavigation() {
 		navigation.classList.remove('is-active');
 		navigation.setAttribute('aria-hidden', 'true');
@@ -20,11 +23,15 @@ export default function initMobileNavigation() {
 			submenu.classList.remove('sub-menu-is-active');
 			submenu.setAttribute('aria-hidden', 'true');
 		});
-		hamburger.focus();
+		overlay.close();
 	}
 
 	hamburger.addEventListener('click', () => {
 		const isOpen = !hamburger.classList.contains('is-active');
+		if (!isOpen) {
+			closeNavigation();
+			return;
+		}
 		hamburger.classList.toggle('is-active', isOpen);
 		hamburger.setAttribute('aria-expanded', String(isOpen));
 		hamburger.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
@@ -32,7 +39,7 @@ export default function initMobileNavigation() {
 		navigation.setAttribute('aria-hidden', String(!isOpen));
 		document.body.classList.toggle('mobile-nav-is-active', isOpen);
 		wrapper?.classList.toggle('hamburger-is-active', isOpen);
-		if (isOpen) closeButton?.focus();
+		overlay.open(hamburger, closeButton);
 	});
 	navigation.querySelectorAll('.close').forEach((button) => {
 		button.addEventListener('click', (event) => {
@@ -69,9 +76,4 @@ export default function initMobileNavigation() {
 		submenu.setAttribute('aria-hidden', String(isOpen));
 	});
 
-	document.addEventListener('keydown', (event) => {
-		if (event.key === 'Escape' && navigation.classList.contains('is-active')) {
-			closeNavigation();
-		}
-	});
 }

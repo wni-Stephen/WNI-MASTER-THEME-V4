@@ -1,4 +1,5 @@
 export default function initSmoothScroll() {
+	if (!document.body.classList.contains('smooth-scroll')) return;
 	const gsap = window.gsap;
 	const ScrollTrigger = window.ScrollTrigger;
 	const ScrollSmoother = window.ScrollSmoother;
@@ -14,9 +15,7 @@ export default function initSmoothScroll() {
 	/**
 	 * Respect reduced-motion preferences.
 	 */
-	const prefersReducedMotion = window.matchMedia(
-		'(prefers-reduced-motion: reduce)'
-	).matches;
+	const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 	if (prefersReducedMotion) {
 		return;
@@ -41,15 +40,11 @@ export default function initSmoothScroll() {
 	 * Usage:
 	 * <a href="#section" data-smooth-scroll>
 	 */
-	document.querySelectorAll(
-		'a[data-smooth-scroll][href^="#"]'
-	).forEach(function (link) {
+	document.querySelectorAll('a[data-smooth-scroll][href^="#"]').forEach(function (link) {
 		link.addEventListener(
 			'click',
 			function (event) {
-				const href = link.getAttribute(
-					'href'
-				);
+				const href = link.getAttribute('href');
 
 				if (
 					!href
@@ -58,9 +53,7 @@ export default function initSmoothScroll() {
 					return;
 				}
 
-				const target = document.getElementById(
-					href.substring(1)
-				);
+				const target = document.getElementById(href.substring(1));
 
 				if (!target) {
 					return;

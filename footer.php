@@ -74,7 +74,7 @@ $terms_url = $terms_page ? get_permalink($terms_page) : '';
 </div><!-- #smooth-content -->
 </div><!-- #smooth-wrapper -->
 
-<?php get_search_form(); ?>
+<?php get_template_part('components/search-overlay'); ?>
 <?php wp_footer(); ?>
 </body>
 </html>

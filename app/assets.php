@@ -6,7 +6,6 @@
 
 defined('ABSPATH') || exit;
 
-
 /**
  * Website font configuration.
  *
@@ -43,7 +42,6 @@ function websiteni_get_font_config() {
 	];
 }
 
-
 /**
  * Enqueue theme assets.
  */
@@ -71,19 +69,13 @@ function websiteni_enqueue_assets() {
 		. '/assets/dist/script.js'
 	);
 
-	$theme_version = wp_get_theme()->get(
-		'Version'
-	);
+	$theme_version = wp_get_theme()->get('Version');
 
-	$style_version = file_exists(
-		$style_path
-	)
+	$style_version = file_exists($style_path)
 		? filemtime($style_path)
 		: $theme_version;
 
-	$script_version = file_exists(
-		$script_path
-	)
+	$script_version = file_exists($script_path)
 		? filemtime($script_path)
 		: $theme_version;
 
@@ -166,7 +158,6 @@ add_action(
 	'wp_enqueue_scripts',
 	'websiteni_enqueue_assets'
 );
-
 
 /**
  * Add Google Fonts preconnect hints.

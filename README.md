@@ -1,51 +1,49 @@
-# WebsiteNI V4 Tailwind migration patch
+# WebsiteNI Starter Theme V4
 
-This ZIP contains the files that should replace their matching files in `WNI-MASTER-THEME-V4`.
+## Stack
+- WordPress
+- Tailwind CSS v4
+- Vite
+- ACF Pro / ACF Extended
+- Vanilla JavaScript
+- GSAP
 
-## What changed
+## Requirements
 
-- Foundation layout classes replaced with Tailwind utilities in the shared/root templates.
-- Foundation JS initialisation and `what-input` dependency removed from the frontend entry point.
-- `show-for-sr` replaced with Tailwind `sr-only`.
-- WebsiteNI 1740px container retained as the `site-container` Tailwind utility.
-- V3 grid gutters retained: 20px by default and 30px from 640px upward.
-- Tailwind v4 design tokens and baseline component styles added to `assets/styles/app.css`.
-- Duplicate mobile-navigation event handlers removed from `assets/scripts/functions.js`.
-- Responsive embeds retained without Foundation.
-- Stylelint changed from the SCSS-specific preset to plain CSS linting.
+## Getting Started
 
-## Files/folders to remove after replacing these files
+## Development Commands
 
-Once the new build is working, remove the legacy SCSS tree:
+## Theme Structure
 
-`assets/styles/scss/`
+## CSS Architecture
 
-Do not remove it until you are happy that any project-specific styles you still want have been migrated.
+## JavaScript Architecture
 
-## Dependencies that should no longer exist
+Frontend modules use vanilla JavaScript. Navigation and search share `modules/overlay.js` for Tab containment, Escape, focus restoration and background `inert` state. Open overlays pause an active ScrollSmoother instance.
 
-- `foundation-sites`
-- `what-input`
-- `sass`
-- `stylelint-config-recommended-scss`
-- `autoprefixer` (not needed for this Tailwind v4 Vite setup)
-- `postcss` (unless another project-specific tool needs it)
+Smooth scrolling is disabled by default. Enable it per project in `functions.php`:
 
-## After copying the patch
-
-Run:
-
-```bash
-npm install
-npm run build
-npm run lint
+```php
+add_filter('websiteni_smooth_scroll_enabled', '__return_true');
 ```
 
-The build should continue to output:
+Reduced-motion preferences still disable smooth scrolling and entrance animations. GSAP entrance animations remain available independently.
 
-- `assets/dist/style.css`
-- `assets/dist/script.js`
+`searchform.php` contains the reusable form. `components/search-overlay.php` renders the site overlay once through the footer. Use `get_search_form()` for additional standalone forms.
 
-## Important
+SVG replacement preserves image accessibility attributes and uses non-empty alt text as the accessible name. Empty-alt images are decorative unless explicitly named with ARIA.
 
-The ZIP intentionally contains the files that change for the migration rather than duplicate unchanged images, ACF JSON, app modules, PHP libraries, and other V4 files. Copy it over the V4 theme root and keep all unchanged V4 files in place.
+## Flexible Content
+
+## Reusable Components
+
+## Starting a New Client Project
+
+Theme activation leaves homepage settings untouched. To create or reuse a Home page and set it as the homepage, visit **Tools → Starter Setup** and select **Set up homepage**. Existing static homepage assignments are preserved. The action opens Reading Settings so you can verify the result.
+
+After changes, test menu and search with Tab, Shift+Tab and Escape, focus restoration, nested submenus, standalone search forms, decorative and meaningful SVGs, and scrolling with reduced motion enabled.
+
+## Build / Deployment
+
+## Coding Standards

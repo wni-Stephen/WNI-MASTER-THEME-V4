@@ -1,58 +1,27 @@
+import createOverlay from './overlay.js';
+
 export default function initSearch() {
-	const search = document.querySelector('.search');
-	const openButtons = document.querySelectorAll('.search-open');
-	const closeButtons = document.querySelectorAll('.search-close');
-	const input = document.querySelector('.search-input');
-
-	if (!search) {
-		return;
-	}
-
-	let searchTrigger = null;
-
-	function openSearch(trigger) {
-		searchTrigger = trigger;
-		search.setAttribute('aria-hidden', 'false');
-
-		document.body.classList.add('search-is-active');
-
-		setTimeout(() => {
-			input?.focus();
-		}, 100);
-	}
+	const search = document.getElementById('site-search');
+	if (!search) return;
+	const buttons = document.querySelectorAll('.search-open');
+	const overlay = createOverlay(search, closeSearch);
 
 	function closeSearch() {
-		search.setAttribute('aria-hidden', 'true');
-
 		document.body.classList.remove('search-is-active');
-
-		searchTrigger?.focus();
+		buttons.forEach((button) => button.setAttribute('aria-expanded', 'false'));
+		overlay.close();
 	}
 
-	openButtons.forEach((button) => {
-		button.addEventListener(
-			'click',
-			(event) => {
-				event.preventDefault();
-
-				openSearch(button);
-			}
-		);
+	buttons.forEach((button) => {
+		button.setAttribute('aria-controls', 'site-search');
+		button.setAttribute('aria-expanded', 'false');
+		button.addEventListener('click', () => {
+			document.body.classList.add('search-is-active');
+			overlay.open(button, search.querySelector('.search-input'));
+			button.setAttribute('aria-expanded', 'true');
+		});
 	});
-
-	closeButtons.forEach((button) => {
+	search.querySelectorAll('.search-close').forEach((button) => {
 		button.addEventListener('click', closeSearch);
 	});
-
-	document.addEventListener(
-		'keydown',
-		(event) => {
-			if (
-				event.key === 'Escape'
-				&& document.body.classList.contains('search-is-active')
-			) {
-				closeSearch();
-			}
-		}
-	);
 }

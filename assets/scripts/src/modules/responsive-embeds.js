@@ -7,12 +7,8 @@ export default function initResponsiveEmbeds() {
 		) {
 			return;
 		}
-		const width = parseFloat(
-			iframe.getAttribute('width')
-		);
-		const height = parseFloat(
-			iframe.getAttribute('height')
-		);
+		const width = parseFloat(iframe.getAttribute('width'));
+		const height = parseFloat(iframe.getAttribute('height'));
 		const isWidescreen = (
 			!height
 			|| (width / height) > 1.5

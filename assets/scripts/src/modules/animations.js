@@ -12,9 +12,7 @@ export default function initAnimations() {
 	/**
 	 * Respect reduced-motion preferences.
 	 */
-	const prefersReducedMotion = window.matchMedia(
-		'(prefers-reduced-motion: reduce)'
-	).matches;
+	const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 	if (prefersReducedMotion) {
 		return;
@@ -68,9 +66,7 @@ export default function initAnimations() {
 		Object.keys(animations).some(
 			function (animation) {
 				if (
-					element.classList.contains(
-						animation
-					)
+					element.classList.contains(animation)
 				) {
 					animationName = animation;
 
@@ -84,9 +80,7 @@ export default function initAnimations() {
 		return animationName;
 	}
 
-	gsap.registerPlugin(
-		ScrollTrigger
-	);
+	gsap.registerPlugin(ScrollTrigger);
 
 	/**
 	 * Grouped stagger animations.
@@ -102,28 +96,20 @@ export default function initAnimations() {
 	 *     <div class="fade-up"></div>
 	 * </div>
 	 */
-	const staggerGroups = document.querySelectorAll(
-		'.animation-stagger'
-	);
+	const staggerGroups = document.querySelectorAll('.animation-stagger');
 
 	const groupedElements = new Set();
 
 	staggerGroups.forEach(function (group) {
-		const elements = group.querySelectorAll(
-			selectors
-		);
+		const elements = group.querySelectorAll(selectors);
 
 		if (!elements.length) {
 			return;
 		}
 
-		const stagger = parseFloat(
-			group.dataset.animateStagger
-		);
+		const stagger = parseFloat(group.dataset.animateStagger);
 
-		const duration = parseFloat(
-			group.dataset.animateDuration
-		);
+		const duration = parseFloat(group.dataset.animateDuration);
 
 		const start = (
 			group.dataset.animateStart
@@ -140,21 +126,15 @@ export default function initAnimations() {
 
 		elements.forEach(
 			function (element, index) {
-				const animationName = getAnimationName(
-					element
-				);
+				const animationName = getAnimationName(element);
 
 				if (!animationName) {
 					return;
 				}
 
-				groupedElements.add(
-					element
-				);
+				groupedElements.add(element);
 
-				const elementDuration = parseFloat(
-					element.dataset.animateDuration
-				);
+				const elementDuration = parseFloat(element.dataset.animateDuration);
 
 				timeline.from(
 					element,
@@ -162,13 +142,9 @@ export default function initAnimations() {
 						...animations[animationName],
 
 						duration:
-							Number.isFinite(
-								elementDuration
-							)
+							Number.isFinite(elementDuration)
 								? elementDuration
-								: Number.isFinite(
-									duration
-								)
+								: Number.isFinite(duration)
 									? duration
 									: 0.8,
 
@@ -187,9 +163,7 @@ export default function initAnimations() {
 	/**
 	 * Individual animations.
 	 */
-	const elements = document.querySelectorAll(
-		selectors
-	);
+	const elements = document.querySelectorAll(selectors);
 
 	elements.forEach(function (element) {
 		/**
@@ -197,16 +171,12 @@ export default function initAnimations() {
 		 * are already handled above.
 		 */
 		if (
-			groupedElements.has(
-				element
-			)
+			groupedElements.has(element)
 		) {
 			return;
 		}
 
-		const animationName = getAnimationName(
-			element
-		);
+		const animationName = getAnimationName(element);
 
 		if (!animationName) {
 			return;
@@ -216,13 +186,9 @@ export default function initAnimations() {
 			animationName
 		];
 
-		const duration = parseFloat(
-			element.dataset.animateDuration
-		);
+		const duration = parseFloat(element.dataset.animateDuration);
 
-		const delay = parseFloat(
-			element.dataset.animateDelay
-		);
+		const delay = parseFloat(element.dataset.animateDelay);
 
 		const start = (
 			element.dataset.animateStart
