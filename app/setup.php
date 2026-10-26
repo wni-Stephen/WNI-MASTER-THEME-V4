@@ -17,7 +17,7 @@ function websiteni_joints_theme_setup() {
 	 * Load theme translations.
 	 */
 	load_theme_textdomain(
-		'websiteni-foundation',
+		'websiteni',
 		get_template_directory() . '/languages'
 	);
 
@@ -94,12 +94,12 @@ function websiteni_joints_theme_setup() {
 		array(
 			'primary-navigation' => __(
 				'Primary Navigation',
-				'websiteni-foundation'
+				'websiteni'
 			),
 
 			'secondary-navigation' => __(
 				'Secondary Navigation',
-				'websiteni-foundation'
+				'websiteni'
 			),
 		)
 	);

@@ -12,8 +12,8 @@ defined('ABSPATH') || exit;
  */
 function websiteni_register_launch_check_page() {
 	add_theme_page(
-		__('Launch Check', 'websiteni-foundation'),
-		__('Launch Check', 'websiteni-foundation'),
+		__('Launch Check', 'websiteni'),
+		__('Launch Check', 'websiteni'),
 		'manage_options',
 		'websiteni-launch-check',
 		'websiteni_render_launch_check_page'
@@ -793,14 +793,14 @@ function websiteni_render_launch_check_page() {
 		<h1>
 			<?php esc_html_e(
 				'WebsiteNI Launch Check',
-				'websiteni-foundation'
+				'websiteni'
 			); ?>
 		</h1>
 
 		<p class="description">
 			<?php esc_html_e(
 				'Quick checks to run before a WebsiteNI site goes live.',
-				'websiteni-foundation'
+				'websiteni'
 			); ?>
 		</p>
 
@@ -812,13 +812,13 @@ function websiteni_render_launch_check_page() {
 					<strong>
 						<?php esc_html_e(
 							'Non-production environment detected.',
-							'websiteni-foundation'
+							'websiteni'
 						); ?>
 					</strong>
 
 					<?php esc_html_e(
 						'Run the Launch Check again on the production site after the final URL or DNS change.',
-						'websiteni-foundation'
+						'websiteni'
 					); ?>
 				</p>
 			</div>
@@ -888,7 +888,7 @@ function websiteni_render_launch_check_page() {
 			<p class="wni-launch-summary-note">
 				<?php esc_html_e(
 					'Only required checks count towards the launch score.',
-					'websiteni-foundation'
+					'websiteni'
 				); ?>
 			</p>
 
@@ -1008,7 +1008,7 @@ function websiteni_render_launch_check_page() {
 		<h2>
 			<?php esc_html_e(
 				'Environment',
-				'websiteni-foundation'
+				'websiteni'
 			); ?>
 		</h2>
 
@@ -1132,7 +1132,7 @@ function websiteni_render_launch_check_page() {
 			>
 				<?php esc_html_e(
 					'Open WordPress Site Health',
-					'websiteni-foundation'
+					'websiteni'
 				); ?>
 			</a>
 

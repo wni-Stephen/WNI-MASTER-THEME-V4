@@ -69,17 +69,17 @@ function websiteni_add_image_size_names($sizes) {
 		[
 			'wni-card' => __(
 				'WebsiteNI Card (4:3)',
-				'websiteni-foundation'
+				'websiteni'
 			),
 
 			'wni-square' => __(
 				'WebsiteNI Square (1:1)',
-				'websiteni-foundation'
+				'websiteni'
 			),
 
 			'wni-landscape' => __(
 				'WebsiteNI Landscape (16:9)',
-				'websiteni-foundation'
+				'websiteni'
 			),
 		]
 	);

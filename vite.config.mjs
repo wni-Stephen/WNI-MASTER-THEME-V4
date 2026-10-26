@@ -27,7 +27,6 @@ export default defineConfig({
 
 			name: 'WebsiteNITheme',
 			formats: ['iife'],
-
 			fileName: () => 'script.js',
 			cssFileName: 'style',
 		},
