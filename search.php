@@ -18,7 +18,7 @@ $search_query = get_search_query();
 
 		<div class="site-container">
 
-			<div class="grid grid-cols-12 gap-x-5 md:gap-x-[30px]">
+			<div class="grid grid-cols-12 gap-x-5 sm:gap-x-[30px]">
 
 				<div class="col-span-12">
 
@@ -67,7 +67,7 @@ $search_query = get_search_query();
 			<?php if (have_posts()) : ?>
 
 				<div
-					class="search-results-grid grid grid-cols-1 gap-5 md:grid-cols-2 md:gap-[30px] lg:grid-cols-3"
+					class="search-results-grid grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-[30px] lg:grid-cols-3"
 				>
 
 					<?php

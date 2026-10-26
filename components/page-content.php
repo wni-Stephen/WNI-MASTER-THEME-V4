@@ -17,7 +17,7 @@ if ($has_flexible_content) {
 }
 ?>
 <div class="site-container page-content-fallback">
-	<div class="grid grid-cols-12 gap-x-5 md:gap-x-[30px]">
+	<div class="grid grid-cols-12 gap-x-5 sm:gap-x-[30px]">
 		<div class="col-span-12">
 			<?php the_content(); ?>
 		</div>

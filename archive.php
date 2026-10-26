@@ -6,7 +6,7 @@ get_header();
 <main id="content" class="content">
 	<section class="archive-header">
 		<div class="site-container">
-			<div class="grid grid-cols-12 gap-x-5 md:gap-x-[30px]">
+			<div class="grid grid-cols-12 gap-x-5 sm:gap-x-[30px]">
 				<div class="col-span-12">
 					<h1 class="archive-title"><?php the_archive_title(); ?></h1>
 					<?php if (get_the_archive_description()) : ?>
@@ -18,7 +18,7 @@ get_header();
 	</section>
 	<section class="archive-content">
 		<div class="site-container">
-			<div class="grid grid-cols-12 gap-x-5 gap-y-8 md:gap-x-[30px]">
+			<div class="grid grid-cols-12 gap-x-5 gap-y-8 sm:gap-x-[30px]">
 				<div class="col-span-12 lg:col-span-8">
 					<?php if (have_posts()) : ?>
 						<div class="posts-list">

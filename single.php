@@ -11,7 +11,7 @@ $posts_page_title = $posts_page_id ? get_the_title($posts_page_id) : __('News', 
 		<article id="post-<?php the_ID(); ?>" <?php post_class('single-post'); ?>>
 			<header class="single-header">
 				<div class="site-container">
-					<div class="grid grid-cols-12 gap-x-5 gap-y-4 md:gap-x-[30px]">
+					<div class="grid grid-cols-12 gap-x-5 gap-y-4 sm:gap-x-[30px]">
 						<div class="col-span-12">
 							<nav class="single-breadcrumbs" aria-label="Breadcrumb">
 								<a href="<?php echo esc_url(home_url('/')); ?>"><?php esc_html_e('Home', 'websiteni'); ?></a>
@@ -30,7 +30,7 @@ $posts_page_title = $posts_page_id ? get_the_title($posts_page_id) : __('News', 
 			</header>
 			<section class="single-content">
 				<div class="site-container">
-					<div class="grid grid-cols-12 gap-x-5 md:gap-x-[30px]">
+					<div class="grid grid-cols-12 gap-x-5 sm:gap-x-[30px]">
 						<div class="col-span-12 lg:col-span-8">
 							<?php if (has_post_thumbnail()) : ?><div class="single-featured-image"><?php the_post_thumbnail('large'); ?></div><?php endif; ?>
 							<div class="single-entry-content"><?php the_content(); ?></div>

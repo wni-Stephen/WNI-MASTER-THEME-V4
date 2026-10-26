@@ -1,0 +1,186 @@
+@layer components {
+	.navigation {
+		position: relative;
+		z-index: 50;
+		width: 100%;
+		background-color: var(--color-white);
+	}
+
+	.company-logo {
+		display: inline-flex;
+		align-items: center;
+	}
+
+	.company-logo img,
+	.custom-logo {
+		display: block;
+		width: auto;
+		max-height: 4rem;
+	}
+
+	.primary-menu,
+	.secondary-menu,
+	.primary-menu ul,
+	.secondary-menu ul {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.secondary-menu {
+		display: flex;
+		align-items: center;
+		gap: 2rem;
+	}
+
+	.secondary-menu a {
+		display: block;
+		padding-block: 1.5rem;
+	}
+
+	.navigation-overlay {
+		position: fixed;
+		inset: 0;
+		z-index: 100;
+
+		display: flex;
+		visibility: hidden;
+
+		padding: 5rem 20px 2rem;
+
+		background-color: var(--color-secondary);
+		color: var(--color-white);
+
+		opacity: 0;
+		pointer-events: none;
+
+		transition:
+			opacity 0.3s var(--ease-wni),
+			visibility 0.3s var(--ease-wni);
+	}
+
+	.navigation-overlay.is-active {
+		visibility: visible;
+		opacity: 1;
+		pointer-events: auto;
+	}
+
+	.navigation-overlay nav {
+		width: 100%;
+		max-width: var(--container-site);
+		margin-inline: auto;
+	}
+
+	.navigation-overlay .primary-menu > li {
+		border-bottom: 1px solid
+			color-mix(
+				in srgb,
+				var(--color-white) 20%,
+				transparent
+			);
+	}
+
+	.navigation-overlay .primary-menu a {
+		display: block;
+		padding-block: 1rem;
+		font-size: 1.25rem;
+	}
+
+	.navigation-overlay .close {
+		position: absolute;
+		top: 1.5rem;
+		right: 20px;
+	}
+
+	.submenu-toggle {
+		position: absolute;
+		right: 0;
+
+		width: 3rem;
+		height: 3rem;
+	}
+
+	.navigation-overlay .menu-item-has-children {
+		position: relative;
+	}
+
+	.navigation-overlay .sub-menu {
+		display: none;
+		padding-left: 1rem;
+	}
+
+	.navigation-overlay .sub-menu-is-active {
+		display: block;
+	}
+
+	.search-open,
+	.search-close,
+	.navigation-overlay .close {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+
+		border: 0;
+		background: transparent;
+		cursor: pointer;
+	}
+
+	.search {
+		position: fixed;
+		inset: 0;
+		z-index: 200;
+
+		visibility: hidden;
+
+		background-color:
+			color-mix(
+				in srgb,
+				var(--color-secondary) 96%,
+				transparent
+			);
+
+		opacity: 0;
+		pointer-events: none;
+
+		transition:
+			opacity 0.3s var(--ease-wni),
+			visibility 0.3s var(--ease-wni);
+	}
+
+	body.search-is-active .search {
+		visibility: visible;
+		opacity: 1;
+		pointer-events: auto;
+	}
+
+	.search-inner {
+		display: flex;
+		min-height: 100%;
+		align-items: center;
+		justify-content: center;
+		padding: 20px;
+	}
+
+	.search-container {
+		position: relative;
+		width: min(100%, 60rem);
+	}
+
+	.search-input {
+		width: 100%;
+		padding: 1rem 4rem 1rem 1rem;
+		font-size: clamp(1.5rem, 3vw, 2.5rem);
+	}
+
+	.search-close {
+		position: absolute;
+		top: 50%;
+		right: 1rem;
+		transform: translateY(-50%);
+	}
+
+	body.mobile-nav-is-active,
+	body.search-is-active {
+		overflow: hidden;
+	}
+}

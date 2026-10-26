@@ -49,7 +49,7 @@ $custom_logo_id = get_theme_mod('custom_logo');
 					<header class="navigation">
 						<div class="w-full">
 							<div class="site-container">
-								<div class="grid grid-cols-12 gap-x-5 md:gap-x-[30px]">
+								<div class="grid grid-cols-12 gap-x-5 sm:gap-x-[30px]">
 									<div class="companylogo col-span-6 flex items-center justify-start lg:col-span-3">
 										<a class="company-logo" href="<?php echo esc_url(home_url('/')); ?>" title="<?php echo esc_attr($site_name); ?>" rel="home">
 											<?php if ($custom_logo_id) : ?>

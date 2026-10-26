@@ -1,0 +1,68 @@
+@layer components {
+	label {
+		display: block;
+		margin-bottom: 0.5rem;
+		font-weight: 600;
+	}
+
+	input:not(
+		[type="checkbox"],
+		[type="radio"],
+		[type="submit"],
+		[type="button"],
+		[type="reset"]
+	),
+	select,
+	textarea {
+		width: 100%;
+		min-height: 3.25rem;
+		padding: 0.75rem 1rem;
+
+		border: 1px solid var(--color-grey);
+		border-radius: 0;
+
+		background-color: var(--color-white);
+		color: var(--color-black);
+
+		transition:
+			border-color 0.2s ease,
+			box-shadow 0.2s ease;
+	}
+
+	textarea {
+		min-height: 10rem;
+		resize: vertical;
+	}
+
+	input:focus,
+	select:focus,
+	textarea:focus {
+		border-color: var(--color-primary);
+		outline: none;
+		box-shadow: 0 0 0 2px
+			color-mix(
+				in srgb,
+				var(--color-primary) 20%,
+				transparent
+			);
+	}
+
+	input::placeholder,
+	textarea::placeholder {
+		color: var(--color-grey-dark);
+		opacity: 1;
+	}
+
+	input[type="checkbox"],
+	input[type="radio"] {
+		width: 1.125rem;
+		height: 1.125rem;
+		accent-color: var(--color-primary);
+	}
+
+	button,
+	input[type="submit"],
+	input[type="button"] {
+		cursor: pointer;
+	}
+}

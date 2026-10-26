@@ -18,7 +18,7 @@ if (!$heading && !$content) {
 	class="<?php echo esc_attr($section_classes); ?>"
 >
 	<div class="site-container">
-		<div class="grid grid-cols-12 gap-x-5 md:gap-x-[30px]">
+		<div class="grid grid-cols-12 gap-x-5 sm:gap-x-[30px]">
 			<div class="col-span-12 lg:col-span-8 lg:col-start-3">
 				<?php if ($heading) : ?><h2><?php echo esc_html($heading); ?></h2><?php endif; ?>
 				<?php if ($content) : ?><div class="content-block__content"><?php echo wp_kses_post($content); ?></div><?php endif; ?>

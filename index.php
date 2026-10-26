@@ -8,14 +8,14 @@ $page_title = $posts_page_id ? get_the_title($posts_page_id) : __('News', 'websi
 <main id="content" class="content">
 	<section class="w-full">
 		<div class="site-container">
-			<div class="grid grid-cols-12 gap-x-5 md:gap-x-[30px]">
+			<div class="grid grid-cols-12 gap-x-5 sm:gap-x-[30px]">
 				<div class="col-span-12"><header class="archive-header"><h1><?php echo esc_html($page_title); ?></h1></header></div>
 			</div>
 		</div>
 	</section>
 	<section class="w-full">
 		<div class="site-container">
-			<div class="grid grid-cols-12 gap-x-5 gap-y-8 md:gap-x-[30px]">
+			<div class="grid grid-cols-12 gap-x-5 gap-y-8 sm:gap-x-[30px]">
 				<div class="col-span-12 lg:col-span-8">
 					<?php if (have_posts()) : ?>
 						<div class="posts-list">
