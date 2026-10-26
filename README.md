@@ -67,7 +67,7 @@ To use system fonts, disable Google Fonts and update both stacks here. Disabling
 
 ## JavaScript Architecture
 
-Frontend modules use vanilla JavaScript. The document starts with `no-js`; successful menu/search initialisation switches it to `js`, hiding the native menu/search fallback and showing interactive controls. Navigation and search share `modules/overlay.js` for Tab containment, Escape, focus restoration and background `inert` state. Open overlays pause an active ScrollSmoother instance.
+Frontend modules use vanilla JavaScript. The document starts with `no-js`; successful menu/search initialisation switches it to `js`, hiding the fixed native menu/search fallback and revealing interactive controls. The fallback stays outside document flow, and hidden interactive controls retain their space to avoid shifting the header during startup. Navigation and search share `modules/overlay.js` for Tab containment, Escape, focus restoration and background `inert` state. Open overlays pause an active ScrollSmoother instance.
 
 Smooth scrolling is disabled by default. Enable it per project in `functions.php`:
 

@@ -12,7 +12,6 @@ $args = wp_parse_args(
 		'size'    => 'large',
 		'class'   => '',
 		'alt'     => '',
-		'loading' => 'lazy',
 	)
 );
 
@@ -30,7 +29,7 @@ if (!$image_id) {
 
 $attributes = array(
 	'class'   => trim('w-full h-auto ' . $args['class']),
-	'loading' => $args['loading'] === 'eager' ? 'eager' : 'lazy',
+	'loading' => 'eager',
 );
 
 if ($args['alt'] !== '') {

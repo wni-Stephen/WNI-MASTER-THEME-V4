@@ -30,7 +30,7 @@ $custom_logo_id = get_theme_mod('custom_logo');
 	<div id="mobile-navigation" class="navigation-overlay" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Site navigation" tabindex="-1">
 		<nav aria-label="Primary navigation">
 			<button class="close" type="button" aria-label="Close menu">
-				<img src="<?php echo esc_url($theme_uri . '/assets/images/header/close.svg'); ?>" alt="">
+				<img src="<?php echo esc_url($theme_uri . '/assets/images/header/close.svg'); ?>" width="15" height="15" alt="">
 			</button>
 			<?php
 			wp_nav_menu(
@@ -66,14 +66,14 @@ $custom_logo_id = get_theme_mod('custom_logo');
 												);
 												?>
 											<?php else : ?>
-												<img src="<?php echo esc_url($theme_uri . '/assets/images/header/companylogo.svg'); ?>" alt="<?php echo esc_attr($site_name); ?>">
+												<img src="<?php echo esc_url($theme_uri . '/assets/images/header/companylogo.svg'); ?>" class="default-logo" width="143" height="20" alt="<?php echo esc_attr($site_name); ?>">
 											<?php endif; ?>
 										</a>
 									</div>
 
 									<div class="col-span-6 flex items-center justify-end lg:hidden">
 										<button class="search-open" type="button" aria-label="Open search">
-											<img src="<?php echo esc_url($theme_uri . '/assets/images/header/search.svg'); ?>" alt="">
+											<img src="<?php echo esc_url($theme_uri . '/assets/images/header/search.svg'); ?>" width="22" height="22" alt="">
 										</button>
 										<button class="hamburger hamburger--slider-r" type="button" aria-label="Open menu" aria-controls="mobile-navigation" aria-expanded="false">
 											<span class="hamburger-box"><span class="hamburger-inner"></span></span>
@@ -92,7 +92,7 @@ $custom_logo_id = get_theme_mod('custom_logo');
 											?>
 										</nav>
 										<button class="search-open" type="button" aria-label="Open search">
-											<img src="<?php echo esc_url($theme_uri . '/assets/images/header/search.svg'); ?>" alt="">
+											<img src="<?php echo esc_url($theme_uri . '/assets/images/header/search.svg'); ?>" width="22" height="22" alt="">
 										</button>
 									</div>
 								</div>

@@ -33,6 +33,11 @@ export default function initInlineSvg() {
 					`${image.className} replaced-svg`
 				);
 			}
+			for (const attribute of ['width', 'height', 'style']) {
+				if (image.hasAttribute(attribute)) {
+					svg.setAttribute(attribute, image.getAttribute(attribute));
+				}
+			}
 			svg.removeAttribute('xmlns:a');
 			svg.setAttribute('focusable', 'false');
 			for (const attribute of image.attributes) {

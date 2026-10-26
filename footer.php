@@ -30,7 +30,7 @@ $terms_url = $terms_page ? get_permalink($terms_page) : '';
 						<?php if ($custom_logo_id) : ?>
 							<?php echo wp_get_attachment_image($custom_logo_id, 'full', false, array('class' => 'custom-logo', 'alt' => $site_name)); ?>
 						<?php else : ?>
-							<img src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/header/companylogo.svg'); ?>" alt="<?php echo esc_attr($site_name); ?>">
+							<img src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/header/companylogo.svg'); ?>" class="default-logo" width="143" height="20" alt="<?php echo esc_attr($site_name); ?>">
 						<?php endif; ?>
 					</a>
 				</div>

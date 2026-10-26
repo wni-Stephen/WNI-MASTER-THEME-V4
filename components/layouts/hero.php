@@ -70,7 +70,6 @@ $image_order     = $image_position === 'left' ? 'lg:order-1' : '';
 						'image'   => $image,
 						'size'    => 'full',
 						'class'   => 'aspect-[4/3] object-cover',
-						'loading' => 'eager',
 					)); ?>
 				</div>
 			<?php endif; ?>

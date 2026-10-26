@@ -11,6 +11,11 @@
 
 defined('ABSPATH') || exit;
 
+// Disable WordPress-generated lazy loading on the frontend.
+add_filter('wp_lazy_loading_enabled', function ($enabled) {
+	return is_admin() ? $enabled : false;
+});
+
 
 /**
  * Register reusable WebsiteNI image sizes.
