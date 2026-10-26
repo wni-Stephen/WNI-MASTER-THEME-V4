@@ -11,11 +11,6 @@
 
 defined('ABSPATH') || exit;
 
-// Disable WordPress-generated lazy loading on the frontend.
-add_filter('wp_lazy_loading_enabled', function ($enabled) {
-	return is_admin() ? $enabled : false;
-});
-
 
 /**
  * Register reusable WebsiteNI image sizes.
@@ -139,6 +134,8 @@ function websiteni_get_image_id($image) {
  * - decoding behaviour
  *
  * Works with either an attachment ID or an ACF image array.
+ * Omit loading/fetchpriority to retain WordPress defaults.
+ * Loading accepts lazy/eager; fetchpriority accepts high/low/auto.
  *
  * Example:
  *
@@ -166,6 +163,16 @@ function websiteni_get_image(
 
 	if (!$image_id) {
 		return '';
+	}
+
+	foreach (array('loading' => array('lazy', 'eager'), 'fetchpriority' => array('high', 'low', 'auto')) as $name => $allowed) {
+		if (array_key_exists($name, $attributes) && !in_array($attributes[$name], $allowed, true)) {
+			unset($attributes[$name]);
+		}
+	}
+	// Explicit lazy loading takes precedence over a conflicting high fetch priority.
+	if (($attributes['loading'] ?? null) === 'lazy' && ($attributes['fetchpriority'] ?? null) === 'high') {
+		unset($attributes['fetchpriority']);
 	}
 
 	return wp_get_attachment_image(

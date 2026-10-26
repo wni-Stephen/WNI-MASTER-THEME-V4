@@ -130,3 +130,20 @@ Check all button variants in default, hover and keyboard-focus states. On mobile
 ## Coding Standards
 
 Use compact, readable PHP, HTML, CSS and JavaScript; add blank lines between logical sections. Escape output for its context. Use descriptive hyphen-separated frontend class names. Preserve existing behaviour when tidying code and avoid unnecessary helpers. Keep project-specific configuration documented in its source file.
+
+### Image loading overrides
+
+`components/image.php` uses `websiteni_get_image()` for attachment resolution and responsive markup. Leave `loading` and `fetchpriority` unset (or null) for WordPress defaults. No eager loading is forced.
+
+```php
+get_template_part('components/image', null, array(
+    'image' => $image,
+    'size' => 'large',
+    'loading' => 'eager',
+    'fetchpriority' => 'high',
+));
+```
+
+Use that override only for an important above-the-fold image. Supported values are `lazy`/`eager` for loading and `high`/`low`/`auto` for fetch priority. Invalid values fall back to WordPress defaults. If `lazy` and `high` are combined, the helper drops high priority. The same attributes work in the third argument to `websiteni_get_image()`.
+
+Omit `alt` to use the attachment's alternative text; explicitly pass an empty string for a decorative image.
